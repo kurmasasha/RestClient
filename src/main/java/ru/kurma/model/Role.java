@@ -8,7 +8,8 @@ public class Role {
     public Role() {
     }
 
-    public Role(String role) {
+    public Role(Integer id, String role) {
+        this.id = id;
         this.role = role;
     }
 
