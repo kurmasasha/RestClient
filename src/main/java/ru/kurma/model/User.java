@@ -23,7 +23,11 @@ public class User {
     public User() {
     }
 
-    public User(String firstName, String lastName, String login, String password, Set<Role> role) {
+    public User(String firstName,
+                String lastName,
+                String login,
+                String password,
+                Set<Role> role) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.login = login;

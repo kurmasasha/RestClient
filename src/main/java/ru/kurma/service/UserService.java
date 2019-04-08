@@ -26,12 +26,11 @@ public class UserService {
 
     public User getUserById(String id) {
 
-        User user = restTemplate.getForObject(url+"/"+id, User.class);
+        return restTemplate.getForObject(url+"/"+id, User.class);
 
-        return user;
     }
 
-    public User addUser(String firstName, String lastName, String login, String password) {
+    public void addUser(String firstName, String lastName, String login, String password) {
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
         User user = new User();
@@ -42,18 +41,15 @@ public class UserService {
 
         HttpEntity<User> entity = new HttpEntity<>(user, headers);
 
-        ResponseEntity<User> responseEntity = restTemplate.postForEntity(url, entity, User.class);
-
-        return responseEntity.getBody();
+        restTemplate.postForEntity(url, entity, User.class);
     }
 
-    public User editUser(User user) {
+    public void editUser(User user) {
 
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
         HttpEntity<User> entity = new HttpEntity<>(user, headers);
         restTemplate.exchange(url, HttpMethod.PUT, entity, User.class);
-        return getUserById(user.getId().toString());
     }
 
     public void deleteUser(String id) {

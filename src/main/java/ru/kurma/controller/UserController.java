@@ -52,15 +52,15 @@ public class UserController {
                            @RequestParam String login,
                            @RequestParam String password,
                            @RequestParam String role) {
-        User user1 = userService.getUserById(id);
-        user1.setFirstName(firstName);
-        user1.setLastName(lastName);
-        user1.setLogin(login);
-        user1.setPassword(password);
+        User user = userService.getUserById(id);
+        user.setFirstName(firstName);
+        user.setLastName(lastName);
+        user.setLogin(login);
+        user.setPassword(password);
         Set<Role> roles = new HashSet<>();
         roles.add(roleService.getRoleById(role));
-        user1.setRoles(roles);
-        userService.editUser(user1);
+        user.setRoles(roles);
+        userService.editUser(user);
 
         return "redirect:/home";
     }
